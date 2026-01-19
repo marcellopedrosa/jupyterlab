@@ -14,31 +14,27 @@ services:
       - .:/app
     working_dir: /app
     ports:
-      - "22222:8888"
-      - "22223:8000"
+      - "0.0.0.0:22222:8888"
     environment:
       - PYTHONDONTWRITEBYTECODE=1
       - PYTHONUNBUFFERED=1
     command: >
-      sh -c "pip install --no-cache-dir \
-             deepnote-toolkit \
-             jupyterlab \
-             jupyterlab-deepnote \
-             pandas \
-             openpyxl \
-             numpy \
-             fastapi \
-             uvicorn \
-             python-multipart && 
-             jupyter lab \
-             --ip=0.0.0.0 \
-             --port=8888 \
-             --no-browser \
-             --allow-root \
-             --NotebookApp.token='' \
-             --NotebookApp.password='' \
-             --LabApp.allow_origin='*' \
-             --LabApp.base_url='/'"
+      sh -c "pip install --no-cache-dir 
+      deepnote-toolkit jupyterlab jupyterlab-deepnote 
+      pandas openpyxl numpy fastapi uvicorn python-multipart && 
+      jupyter lab 
+      --ip=0.0.0.0 
+      --port=8888 
+      --no-browser 
+      --allow-root 
+      --ServerApp.token='' 
+      --ServerApp.password='' 
+      --ServerApp.allow_origin='*' 
+      --ServerApp.check_origin=False 
+      --ServerApp.disable_check_xsrf=True 
+      --ServerApp.allow_remote_access=True 
+      --ServerApp.base_url='/python/' 
+      --LabApp.base_url='/python/'"
 ```
 
 ### Ler Planilha com 2 Colunas com valores inteiros
