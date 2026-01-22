@@ -120,6 +120,7 @@ services:
 
       OAUTH2_PROXY_PROVIDER_CA_FILE: /etc/ssl/certs/ca-certificates.crt
       OAUTH2_PROXY_HTTP_CLIENT_TIMEOUT: 30s
+      OAUTH2_PROXY_INSECURE_OIDC_SKIP_EMAIL_VERIFIED: "true"
     networks:
       - csc
 
