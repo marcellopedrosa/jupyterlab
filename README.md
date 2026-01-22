@@ -2,7 +2,7 @@
 
 - Executando python online por questões de segurança para usuário final
 
-### Getting started Docker
+### JupyterLab Standalone (Subir individualmente para teste sem autenticação)
 
 
 ```
@@ -37,7 +37,7 @@ services:
       --LabApp.base_url='/python/'"
 ```
 
-### Autenticação via Keycloak
+### JupyterLab utilizando Autenticação via Keycloak
 
 ``` 
 services:
@@ -79,19 +79,19 @@ services:
       - "127.0.0.1:22222:4180"
     environment:
       OAUTH2_PROXY_PROVIDER: keycloak-oidc
-      OAUTH2_PROXY_OIDC_ISSUER_URL: https://auth-hml.fachesf.com.br/auth/realms/fachesf
+      OAUTH2_PROXY_OIDC_ISSUER_URL: https://auth.meu-keycloak-no-nginx-server-proxy/auth/realms/meurealm
 
       OAUTH2_PROXY_CLIENT_ID: jupyterlab-hml
       OAUTH2_PROXY_CLIENT_SECRET: <CLIENT_SECRET>
 
       OAUTH2_PROXY_COOKIE_SECRET: <COOKIE_SECRET>
       OAUTH2_PROXY_COOKIE_SECURE: "true"
-      OAUTH2_PROXY_COOKIE_DOMAIN: s202.fachesf.com.br
+      OAUTH2_PROXY_COOKIE_DOMAIN: meu-nginx-server-proxy.com.br
       OAUTH2_PROXY_COOKIE_PATH: /python
 
       OAUTH2_PROXY_REVERSE_PROXY: "true"
       OAUTH2_PROXY_PROXY_PREFIX: /python/oauth2
-      OAUTH2_PROXY_REDIRECT_URL: https://s202.fachesf.com.br/python/oauth2/callback
+      OAUTH2_PROXY_REDIRECT_URL: https://meu-nginx-server-proxy.com.br/python/oauth2/callback
 
       # upstream com /python/ porque o Jupyter está com base_url /python/
       OAUTH2_PROXY_UPSTREAMS: http://jupyter:8888/python/
