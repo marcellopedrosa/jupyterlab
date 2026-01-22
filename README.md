@@ -2,9 +2,24 @@
 
 - Executando python online por questões de segurança para usuário final
 
+### NGINX com o proxy configurado
+```
+location /python/ {
+		    proxy_pass http://host-docker-do-jupyter:987321;
+			
+            proxy_set_header Host $http_host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            proxy_read_timeout 86400;
+		}
+```
+
 ### JupyterLab Standalone (Subir individualmente para teste sem autenticação)
-
-
 ```
 services:
   jupyter:
